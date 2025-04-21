@@ -11,7 +11,7 @@ const Portfolio = () => {
             const res = await fetch(`${process.env.REACT_APP_BASE_API}/api/product`);
             const data = await res.json()
             console.log(data, 'ddddddddd')
-              if (data) setProducts(data);
+            if (data) setProducts(data);
         } catch (error) {
             console.error('error with fetch product: ', error)
         }
@@ -30,13 +30,13 @@ const Portfolio = () => {
                 </div>
 
                 <div className="px-10" data-aos="fade-down" data-aos-delay="600">
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-2">
-                        {products.map((p, idx) => {
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-6 gap-2">
+                        {[...products, ...products, ...products, ...products, ...products].map((p, idx) => {
                             return (
                                 <a type="link" key={p._id} href={`/product/${p._id}`}>
                                     <div className="group rounded-2xl shadow-xl w-auto m-3 transform transition duration-500 hover:scale-110 portofolio-card">
                                         <div className="relative">
-                                            <img src={p.image} alt={p.title} className="rounded-t-2xl z-0" />
+                                            <img src={p.image} alt={p.title} className="rounded-t-2xl z-0" style={{ height: 260, width: '100%' }} />
                                             <div className="absolute flex w-full h-full top-0 opacity-0 bg-black justify-center rounded-t-2xl rounded-b img-hover">
                                                 <button className="focus:outline-none">
                                                     <svg className="w-20 h-20 text-gray-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -47,7 +47,7 @@ const Portfolio = () => {
                                             </div>
                                         </div>
                                         <div className="py-4 px-2">
-                                            <h2 className="text-theme-blue text-center text-xl text-ellipsis text-nowrap overflow-hidden">{p.title}</h2>
+                                            <h2 className="text-theme-blue text-center text-xl text-ellipsis text-nowrap overflow-hidden" title={p.title}>{p.title}</h2>
                                             {/* <p className="font-light text-gray-400 text-center">{"item.type"}</p> */}
                                         </div>
                                     </div>
