@@ -1,41 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import image01 from "../images/01.png";
 import vanvet from "../images/vanvet.jpg";
 
 const Portfolio = () => {
-    const products = [
-        {
-            id: '12',
-            title: 'Event Management System new test new',
-            image: image01
-        },
-        {
-            id: '13',
-            title: 'Business Management System',
-            image: vanvet
-        },
-        {
-            id: '14',
-            title: 'Event Management System',
-            image: image01
-        },
-        {
-            id: '15',
-            title: 'Business Management System',
-            image: vanvet
-        },
-        {
-            id: '16',
-            title: 'Event Management System',
-            image: image01
-        },
-        {
-            id: '17',
-            title: 'Business Management System',
-            image: vanvet
-        },
-    ]
+    const [products, setProducts] = useState([])
+
+    const fetchProducts = async (id) => {
+        try {
+            const res = await fetch(`http://localhost:3000/api/product`);
+            const data = await res.json()
+            console.log(data, 'ddddddddd')
+              if (data) setProducts(data);
+        } catch (error) {
+            console.error('error with fetch product: ', error)
+        }
+    }
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     return (
         <>
             <div className="my-4 py-4 mt-32" id='portfolio'>
@@ -48,10 +33,10 @@ const Portfolio = () => {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-2">
                         {products.map((p, idx) => {
                             return (
-                                <a type="link" href={idx % 2 === 0 ? `/product/67f507c6f110cb6ad8ea2757` : "/product/67f507edf110cb6ad8ea2759"}>
+                                <a type="link" key={p._id} href={idx % 2 === 0 ? `/product/67f507c6f110cb6ad8ea2757` : "/product/67f507edf110cb6ad8ea2759"}>
                                     <div className="group rounded-2xl shadow-xl w-auto m-3 transform transition duration-500 hover:scale-110 portofolio-card">
                                         <div className="relative">
-                                            <img src={p.image} alt="Portfolio" className="rounded-t-2xl z-0" />
+                                            <img src={'https://i.ibb.co/Xhn9yG1/vanvet.jpg'} alt="Portfolio" className="rounded-t-2xl z-0" />
                                             <div className="absolute flex w-full h-full top-0 opacity-0 bg-black justify-center rounded-t-2xl rounded-b img-hover">
                                                 <button className="focus:outline-none">
                                                     <svg className="w-20 h-20 text-gray-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">

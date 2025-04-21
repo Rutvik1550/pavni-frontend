@@ -32,7 +32,7 @@ function App() {
     });
   }, []);
 
-  useDocTitle("MLD | Molad e Konsult - Bespoke Web and Mobile Applications");
+  useDocTitle("Pavni Chemicals | Delivering Quality Chemicals with Integrity and Precision");
 
   return (
     <>
