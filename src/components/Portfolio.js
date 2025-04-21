@@ -8,7 +8,7 @@ const Portfolio = () => {
 
     const fetchProducts = async (id) => {
         try {
-            const res = await fetch(`https://pavni-backend.onrender.com/api/product`);
+            const res = await fetch(`${process.env.REACT_APP_BASE_API}/api/product`);
             const data = await res.json()
             console.log(data, 'ddddddddd')
               if (data) setProducts(data);
@@ -33,7 +33,7 @@ const Portfolio = () => {
                     <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-2">
                         {products.map((p, idx) => {
                             return (
-                                <a type="link" key={p._id} href={idx % 2 === 0 ? `/product/67f507c6f110cb6ad8ea2757` : "/product/67f507edf110cb6ad8ea2759"}>
+                                <a type="link" key={p._id} href={`/product/${p._id}`}>
                                     <div className="group rounded-2xl shadow-xl w-auto m-3 transform transition duration-500 hover:scale-110 portofolio-card">
                                         <div className="relative">
                                             <img src={'https://i.ibb.co/Xhn9yG1/vanvet.jpg'} alt="Portfolio" className="rounded-t-2xl z-0" />

@@ -19,7 +19,7 @@ const Detail = () => {
 
   const fetchProduct = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/product/${id}`);
+      const res = await fetch(`${process.env.REACT_APP_BASE_API}/api/product/${id}`);
       const data = await res.json()
       console.log(data, 'ddddddddd')
       if (data) setProduct(data || {});
